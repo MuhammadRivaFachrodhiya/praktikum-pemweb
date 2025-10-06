@@ -3,10 +3,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalTitle = document.getElementById('modal-title');
     const modalMessage = document.getElementById('modal-message');
     const closeModalBtn = document.getElementById('modal-close-btn');
+    let currentAction = null;
 
-    function showModal(title, message) {
+    function showModal(title, message, options = {}) {
         modalTitle.textContent = title;
         modalMessage.textContent = message;
+        closeModalBtn.textContent = options.buttonText || 'Mengerti';
+        if (currentAction) {
+            closeModalBtn.removeEventListener('click', currentAction);
+        }
+        currentAction = options.action || null;
+        if (currentAction) {
+            closeModalBtn.addEventListener('click', currentAction);
+        }
         modalOverlay.classList.add('visible');
     }
 
@@ -21,77 +30,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function handleAddToCart(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (isLoggedIn) {
+            const card = event.target.closest('.product-card, .promo-card');
+            const title = card.querySelector('h3').textContent;
+            const artist = card.querySelector('.artist, p').textContent;
+            showModal('Berhasil!', `Album "${title}" oleh ${artist} telah ditambahkan ke keranjang.`);
+        } else {
+            showModal('Anda Belum Login', 'Silakan login terlebih dahulu untuk menambahkan item.', {
+                buttonText: 'Login Sekarang',
+                action: function() {
+                    window.location.href = 'login.php';
+                }
+            });
+        }
+    }
+
+    document.querySelectorAll('.add-to-cart-button').forEach(button => {
+        button.addEventListener('click', handleAddToCart);
+    });
+    
     const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            const albumTitle = document.querySelector('.promo-info h3').textContent;
-            const artistName = document.querySelector('.promo-info .artist').textContent;
-            
-            showModal(
-                'Konfirmasi',
-                `Album "${albumTitle}" oleh ${artistName} telah ditambahkan ke keranjang Anda.`
-            );
-        });
+    if (ctaButton && (ctaButton.textContent.toLowerCase().includes('beli') || ctaButton.textContent.toLowerCase().includes('pesan'))) {
+        ctaButton.addEventListener('click', handleAddToCart);
     }
-
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-        const detailsButton = card.querySelector('.details-button');
-        const addToCartButton = card.querySelector('.add-to-cart-button');
-
-        if (detailsButton) {
-            detailsButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
-                const title = card.querySelector('h3').textContent;
-                const artist = card.querySelector('p').textContent;
-                
-                showModal(
-                    'Detail Album',
-                    `Ini adalah detail untuk album "${title}" oleh ${artist}. Fitur lengkap akan segera hadir!`
-                );
-            });
-        }
-        
-        if (addToCartButton) {
-            addToCartButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
-                const title = card.querySelector('h3').textContent;
-                const artist = card.querySelector('p').textContent;
-
-                showModal(
-                    'Berhasil!',
-                    `Album "${title}" oleh ${artist} telah ditambahkan ke keranjang.`
-                );
-            });
-        }
-    });
-
-    const genreLinks = document.querySelectorAll('.genre-links a');
-    genreLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
+    
+    document.querySelectorAll('.details-button').forEach(button => {
+        button.addEventListener('click', function(event) {
             event.preventDefault();
-            const genre = link.textContent;
-
-            showModal(
-                'Filter Genre',
-                `Anda memilih untuk menampilkan album dengan genre: ${genre}.`
-            );
+            event.stopPropagation();
+            const card = event.target.closest('.product-card');
+            const title = card.querySelector('h3').textContent;
+            const artist = card.querySelector('p').textContent;
+            showModal('Detail Album', `Ini adalah detail untuk album "${title}" oleh ${artist}.`);
         });
     });
 
-    const searchInput = document.querySelector('.search-bar input');
-    if (searchInput) {
-        const searchBar = searchInput.parentElement;
-        searchInput.addEventListener('focus', () => {
-            searchBar.style.border = '1px solid #ffffff';
-            searchBar.style.boxShadow = '0 0 5px rgba(255, 255, 255, 0.5)';
-        });
-        searchInput.addEventListener('blur', () => {
-            searchBar.style.border = '1px solid #444';
-            searchBar.style.boxShadow = 'none';
-        });
-    }
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modalOverlay.classList.contains('visible')) {
+            hideModal();
+        }
+    });
 });

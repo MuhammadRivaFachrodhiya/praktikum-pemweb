@@ -552,3 +552,18 @@ footer {
         transform: scale(1);
     }
 }
+.home-link, .store-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.home-link:hover, .store-link:hover {
+    color: #ffffff;
+    background-color: #444;
+}

@@ -1,0 +1,194 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guille Vinyl (GV) - Surga Piringan Hitam Anda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="index.php"><h1>GV</h1></a>
+            </div>
+            <nav class="main-nav">
+                <a href="#rilisan-terbaru">Rilisan Terbaru</a>
+                <a href="#genre">Genre</a>
+                <a href="#pre-order">Pre-Order</a>
+                <a href="#terlaris">Terlaris</a>
+                <a href="#sale">Sale</a>
+                <a href="landing.php">✨ Spotlight</a>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="search" placeholder="Cari musik & artis...">
+                    <svg class="mic-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                </div>
+                <div class="action-icons">
+                    <a href="dashboard.php" aria-label="Dashboard Akun">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </a>
+                    <a href="keranjang.php" aria-label="Keranjang Belanja">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="hero-banner" class="promo-card">
+                <div class="promo-info">
+                    <h2>ALBUM OF THE WEEK</h2>
+                    <h3>DIFFERENT</h3>
+                    <p class="artist">Eleventwelfth</p>
+                    <div class="album-details">
+                        <span>11 TRACKS</span> &nbsp;•&nbsp;
+                        <span>48 MINUTES</span> &nbsp;•&nbsp;
+                        <span>2025 - ANGULAR MOMENTUM</span>
+                    </div>
+                    <p class="price">Rp 580.000</p>
+                    <a href="#" class="cta-button">Beli Sekarang</a>
+                </div>
+                <div class="promo-image">
+                    <img src="images/different.png" alt="Promosi album unggulan minggu ini">
+                </div>
+            </section>
+
+             <section id="rilisan-terbaru" class="product-section">
+                <h2>Rilisan Terbaru</h2>
+                <div class="product-grid">
+                    <article class="product-card">
+                        <a href="#"><img src="images/hindia.jpg" alt="Sampul Album Hindia"></a>
+                        <div class="product-info">
+                            <h3>Doves, '25 on Blank Canvas</h3>
+                            <p>Hindia</p>
+                            <span>Rp 780.000</span>
+                            <div class="card-actions">
+                                <a href="#" class="details-button">Detail</a>
+                                <a href="#" class="add-to-cart-button">Tambah ke Keranjang</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <a href="#"><img src="images/barasuara.jfif" alt="Sampul Album Barasuara"></a>
+                        <div class="product-info">
+                            <h3>Pikiran dan Perjalanan</h3>
+                            <p>Barasuara</p>
+                            <span>Rp 550.000</span>
+                             <div class="card-actions">
+                                <a href="#" class="details-button">Detail</a>
+                                <a href="#" class="add-to-cart-button">Tambah ke Keranjang</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <a href="#"><img src="images/dd.jfif" alt="Sampul Album Perunggu"></a>
+                        <div class="product-info">
+                            <h3>Dalam Dinamika</h3>
+                            <p>Perunggu</p>
+                            <span>Rp 800.000</span>
+                             <div class="card-actions">
+                                <a href="#" class="details-button">Detail</a>
+                                <a href="#" class="add-to-cart-button">Tambah ke Keranjang</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <a href="#"><img src="images/erk.jpg" alt="Sampul Album Efek Rumah Kaca"></a>
+                        <div class="product-info">
+                            <h3>Kamar Gelap</h3>
+                            <p>Efek Rumah Kaca</p>
+                            <span>Rp 750.000</span>
+                             <div class="card-actions">
+                                <a href="#" class="details-button">Detail</a>
+                                <a href="#" class="add-to-cart-button">Tambah ke Keranjang</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="view-all-link">
+                     <a href="#">Lihat Semua Rilisan &rarr;</a>
+                </div>
+            </section>
+            
+            <section id="genre" class="genre-section">
+                <h2>Jelajahi Berdasarkan Genre</h2>
+                <?php
+                if (isset($_GET['genre'])) {
+                    $selected_genre = htmlspecialchars($_GET['genre']);
+                    echo "<p style='margin-bottom: 20px;'>Menampilkan album untuk genre: <strong>$selected_genre</strong>.</p>";
+                }
+                ?>
+                <div class="genre-links">
+                    <a href="index.php?genre=Rock#genre">Rock</a>
+                    <a href="index.php?genre=Pop#genre">Pop</a>
+                    <a href="index.php?genre=Jazz#genre">Jazz</a>
+                    <a href="index.php?genre=Metal#genre">Metal</a>
+                    <a href="index.php?genre=Indie#genre">Indie</a>
+                </div>
+            </section>
+
+            <aside id="promo-banner" class="shipping-promo">
+                <h3>Gratis Ongkir untuk Pesanan di Atas Rp 750.000!</h3>
+                <p>Nikmati gratis ongkos kirim untuk setiap pembelian di atas Rp 750.000.</p>
+                <a href="#">Pelajari Lebih Lanjut</a>
+            </aside>
+        </main>
+
+        <footer>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Toko</h4>
+                    <a href="#">Rilisan Terbaru</a>
+                    <a href="#">Pre-Order</a>
+                    <a href="#">Terlaris</a>
+                    <a href="#">Sale</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Informasi</h4>
+                    <a href="#">Tentang GV</a>
+                    <a href="#">Hubungi Kami</a>
+                    <a href="#">Info Pengiriman</a>
+                    <a href="#">Tanya Jawab</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Ikuti Kami</h4>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">X (Twitter)</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Guille Vinyl (GV). Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>
+                    <strong>Referensi Desain & Tata Letak:</strong> 
+                    <a href="https://www.roughtrade.com/" target="_blank" rel="noopener noreferrer">Rough Trade</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="custom-alert-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title">Pemberitahuan</h3>
+            <p id="modal-message">Ini adalah pesan default.</p>
+            <button id="modal-close-btn" class="modal-button">Mengerti</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
